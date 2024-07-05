@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Contact form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: hsl(148, 38%, 91%);
+      font-family: "Karla", sans-serif;
+      font-weight: 400;
+    }
+    .container {
+      background-color: white;
+      width: 700px;
+      height: 700px;
+      display: flex;
+      border-radius: 10px;
+      justify-content: center;
+      margin: 5rem auto;
+      padding: 30px;
+    }
+    label {
+      color: hsl(169, 82%, 27%);
+    }
+    .card-contact h1 {
+      padding: 10px;
+    }
+    .form-group {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .name {
+      margin: 0.5rem;
+    }
+    .last {
+      margin: 0.5rem;
+    }
+    .email {
+      margin: 0.5rem;
+    }
+    .group-name input {
+      width: 290px;
+      height: 35px;
+      border-radius: 5px;
+      padding: 10px;
+      border: solid 1px;
+    }
+    .group-last input {
+      width: 290px;
+      height: 35px;
+      border-radius: 5px;
+      padding: 10px;
+      border: solid 1px;
+    }
+    .group-email {
+      padding: 20px;
+    }
+    .group-email input {
+      width: 40rem;
+      height: 35px;
+      border-radius: 5px;
+      padding: 10px;
+      border: solid 1px;
+    }
+    .query {
+      margin: 0.5rem;
+    }
+    .querys {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 20px;
+    }
+    .group-message input {
+      border-radius: 5px;
+      border: solid 1px;
+    }
+    .radio {
+      width: 280px;
+      height: 40px;
+      border: solid 1px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .radio-1 {
+      width: 280px;
+      height: 40px;
+      border: solid 1px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .btn-1 {
+      width: 39rem;
+      height: 40px;
+      background-color: hsl(169, 82%, 27%);
+      color: white;
+      margin-left: 25px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .checkbox {
+      padding: 20px;
+    }
+    .btn-1:hover {
+      transition: 0.4s;
+      background-color: hsl(187, 24%, 22%);
+      color: white;
+    }
+    .nofications {
+      width: 484px;
+      height: 99px;
+      background-color: hsl(187, 24%, 22%);
+      color: white;
+      padding: 13px 45px;
+      border-radius: 5px;
+      position: absolute;
+      top: 1rem;
+      left: 33rem;
+      display: none;
+    }
+    .text li {
+      list-style-image: url(assets/images/icon-success-check.svg);
+      padding: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card-contact">
+      <h1>Contact Us</h1>
+      <form id="contact-form">
+        <div class="form-group">
+          <div class="group-name">
+            <label>First Name *</label>
+            <div class="name">
+              <input type="text" required>
+            </div>
+          </div>
+          <div class="group-last">
+            <label>Last Name *</label>
+            <div class="last">
+              <input type="text" name="Last" required>
+            </div>
+          </div>
+        </div>
+        <div class="group-email">
+          <label>Email Address *</label>
+          <div class="email">
+            <input type="email" required>
+          </div>
+        </div>
+        <div class="query">
+          <label style="margin-left: 20px;">Query type *</label>
+          <div class="querys">
+            <div class="radio">
+              <input type="radio" name="query" value="General Enquiry" required>
+              <label for="option1">General Enquiry</label>
+            </div>
+            <div class="radio-1">
+              <input type="radio" name="query" value="Support" required>
+              <label for="option1">Support Request</label>
+            </div>
+          </div>
+        </div>
+        <div class="group-message">
+          <label style="margin-left: 26px;">Message *</label>
+          <input type="text" id="Message" style="width: 40rem; height: 100px; margin-left: 27px; margin: 1.5rem;" required>
+          <div class="checkbox">
+            <input type="checkbox" name="correct" required>
+            <label for="checkbox">I consent to being contacted by the team</label>
+          </div>
+          <button class="btn-1" id="done">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="nofications" id="allow">
+    <div class="text">
+      <ul>
+        <li>Message Sent!</li>
+      </ul>
+      <p style="color: hsl(148, 38%, 91%);">Thanks for completing the form. We'll be in touch soon!</p>
+    </div>
+  </div>
+
+  <script>
+    const Submit = document.getElementById("done");
+    const allows = document.getElementById("allow");
+    const form = document.getElementById("contact-form");
+
+    Submit.addEventListener("click", function(event) {
+      event.preventDefault();
+
+      if (form.checkValidity()) {
+        allows.style.display = 'block';
+      } else {
+        form.reportValidity();
+      }
+    });
+  </script>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Shivam Kumar</a>.
+  </div>
+</body>
+</html>
